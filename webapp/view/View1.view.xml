@@ -1,0 +1,83 @@
+<mvc:View controllerName="cis.ik12.controller.View1"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:core="sap.ui.core"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+        <VBox class="sapUiSmallMargin">
+		<f:SimpleForm id="SimpleFormChange354"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			title="IK12 Trasaction Data Update"
+			labelSpanXL="3"
+			labelSpanL="3"
+			labelSpanM="3"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="4"
+			emptySpanL="4"
+			emptySpanM="4"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false" >
+			<f:content>
+				<Label text="MeasurementDocNum" />
+				<Input id="MeasurementDocNum" value="{ik12Model>/MeasurementDocNum}" />
+				<Label text="Point" />
+				<Input value="{ik12Model>/Point}"/>
+				<Label text="Recorded Value" />
+				<Input value="{ik12Model>/RecordedValue}"/>
+				<Label text="Reading Value" />
+				<Input value="{ik12Model>/ReadingValue}"/>
+
+				<Label text="Reading Time" />
+				<TimePicker id="ReadingTime" value="{ik12Model>/ReadingTime}" change=".onChangeReadingTime"/>
+				<!-- <TimePicker id="ReadingTime" displayFormat="short" support2400 = "true" value="{path: 'ik12Model>/ReadingTime', type: 'sap.ui.model.odata.type.Time'}" change=".onChangeReadingTime"/> -->
+				  <!-- value="{ik12Model>/ReadingTime}" displayFormat= "HH:mm:ss"  -->
+				<Label text="ShortText" />
+				<Input value="{ik12Model>/ShortText}"/>
+				<Label text="ValuationCode" />
+				<Input value="{ik12Model>/ValuationCode}"/>
+				<Label text="Code Short Text" />
+				<Input value="{ik12Model>/CodeShortText}"/>
+
+
+				<Label text="Read By" />
+				<Input id="ReadBy" value="{ik12Model>/ReadBy}" />
+				<Label text="ReadingDate" />
+				<DatePicker id="ReadingDate" value="{path:'ik12Model>/ReadingDate', formatter:'.formatDate'}" change=".onChangeReadingDate"/>
+				<Label text="Code Group" />
+				<Input value="{ik12Model>/CodeGroup}"/>
+				<Label text="Reading Time stamp" />
+				<DatePicker value="{path:'ik12Model>/ReadingTimestamp', formatter:'.formatDate'}" change=".onChangeReadingTimestamp"/>
+					 <!-- value="{ik12Model>/ReadingTimestamp}"/> -->
+
+				<Label text="Has Reading Value" />
+				<Input id="HasReadingValue" value="{ik12Model>/HasReadingValue}" />
+				<Label text="UOM" />
+				<Input value="{ik12Model>/UOM}"/>
+				<Label text="Point Object Key" />
+				<Input value="{ik12Model>/PointObjectKey}"/>
+				<Label text="Sort Field" />
+				<Input value="{ik12Model>/SortField}"/>
+				<Label text="Order Obj Num" />
+				<Input value="{ik12Model>/OrderObjNum}"/>
+				<Label text="Operation Obj Num" />
+				<Input value="{ik12Model>/OperationObjNum}"/>
+
+			</f:content>
+		</f:SimpleForm>
+	</VBox>
+	
+        </content>
+		<footer>
+		<OverflowToolbar>
+			<ToolbarSpacer></ToolbarSpacer>
+			<Button text="Submit" press=".onPressSubmit"/>
+		</OverflowToolbar>
+		</footer>
+    </Page>
+</mvc:View>

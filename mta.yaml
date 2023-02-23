@@ -1,0 +1,94 @@
+_schema-version: "3.2"
+ID: cisik12
+description: Ik12 Fiori application.
+version: 0.0.1
+modules:
+- name: cisik12-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: cisik12-destination-service
+    parameters:
+      content-target: true
+  - name: cisik12-repo-host
+    parameters:
+      service-key:
+        name: cisik12-repo-host-key
+  - name: cisik12-uaa
+    parameters:
+      service-key:
+        name: cisik12-uaa-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: cisik12_html_repo_host
+          ServiceInstanceName: cisik12-html5-srv
+          ServiceKeyName: cisik12-repo-host-key
+          sap.cloud.service: cisik12
+        - Authentication: OAuth2UserTokenExchange
+          Name: cisik12_uaa
+          ServiceInstanceName: cisik12-xsuaa-srv
+          ServiceKeyName: cisik12-uaa-key
+          sap.cloud.service: cisik12
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: cisik12-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: cisik12-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - cisik12.zip
+      name: cisik12
+      target-path: resources/
+- name: cisik12
+  type: html5
+  path: .
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: cisik12-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: cisik12-destination-service
+    service-plan: lite
+- name: cisik12-uaa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: cisik12-xsuaa-srv
+    service-plan: application
+- name: cisik12-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: cisik12-html5-srv
+    service-plan: app-host
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true

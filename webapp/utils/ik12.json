@@ -1,0 +1,20 @@
+{
+    "MeasurementDocNum": "2",
+    "Point": "1",
+    "RecordedValue": "12",
+    "ReadingValue": "12",
+    "ReadingTime": "",
+    "ShortText": "",
+    "ValuationCode": "",
+    "CodeShortText":"",
+    "ReadBy": "",
+    "ReadingDate": "",
+    "CodeGroup": "",
+    "ReadingTimestamp": "",
+    "HasReadingValue": "",
+    "UOM": "",
+    "PointObjectKey": "",
+    "SortField": "",
+    "OrderObjNum": "",
+    "OperationObjNum": ""
+}
